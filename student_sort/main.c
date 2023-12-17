@@ -37,7 +37,7 @@ int main() {
 	sort(p, size);
 
 	FILE* fp;
-	fp = fopen("sample.txt", "w");
+	fp = fopen("student.txt", "w");
 	if (fp == NULL) {
 		printf("파일 오류");
 		exit(1);
