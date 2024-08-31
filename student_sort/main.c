@@ -17,7 +17,7 @@ void sort_grade(STUDENT* p, int size);
 int main() {
 	int size, num;
 
-	printf("ÇĞ»ı ¼ö: ");
+	printf("í•™ìƒ ìˆ˜: ");
 	scanf("%d", &size);
 
 	system("cls");
@@ -25,24 +25,24 @@ int main() {
 	STUDENT* p;
 	p = (STUDENT*)malloc(size * sizeof(STUDENT));
 	if (p == NULL) {
-		printf("¸Ş¸ğ¸® ÇÒ´ç ¿À·ù");
+		printf("ë©”ëª¨ë¦¬ í• ë‹¹ ì˜¤ë¥˜");
 		exit(1);
 	}
 
 	for (int i = 0; i < size; i++) {
-		printf("ÇĞ»ı #%d\n", i + 1);
-		printf("ÇĞ¹ø: ");
+		printf("í•™ìƒ #%d\n", i + 1);
+		printf("í•™ë²ˆ: ");
 		scanf("%d", &((p + i)->number));
-		printf("ÀÌ¸§: ");
+		printf("ì´ë¦„: ");
 		scanf("%s", &((p + i)->name));
-		printf("ÇĞÁ¡: ");
+		printf("í•™ì : ");
 		scanf("%lf", &((p + i)->grade));
 		printf("\n");
 	}
 	system("cls");
 
 	while (1) {
-		printf("Á¤·Ä ±âÁØ: 1.ÇĞ¹ø		2. ÀÌ¸§		3. ÇĞÁ¡\n");
+		printf("ì •ë ¬ ê¸°ì¤€: 1.í•™ë²ˆ		2. ì´ë¦„		3. í•™ì \n");
 		scanf("%d", &num);
 		if (num == 1) {
 			sort_number(p, size);
@@ -58,7 +58,7 @@ int main() {
 		}
 		else {
 			system("cls");
-			printf("´Ù½Ã ¼±ÅÃ\n");
+			printf("ë‹¤ì‹œ ì„ íƒ\n");
 			continue;
 		}
 	}
@@ -67,16 +67,16 @@ int main() {
 	FILE* fp;
 	fp = fopen("student.txt", "w");
 	if (fp == NULL) {
-		printf("ÆÄÀÏ ¿À·ù");
+		printf("íŒŒì¼ ì˜¤ë¥˜");
 		exit(1);
 	}
 
 	system("cls");
 	for (int i = 0; i < size; i++) {
-		fprintf(fp, "ÇĞ»ı #%d\n", i + 1);
-		fprintf(fp, "ÇĞ¹ø: %d\n", ((p + i)->number));
-		fprintf(fp, "ÀÌ¸§: %s\n", ((p + i)->name));
-		fprintf(fp, "ÇĞÁ¡: %.2lf\n", ((p + i)->grade));
+		fprintf(fp, "í•™ìƒ #%d\n", i + 1);
+		fprintf(fp, "í•™ë²ˆ: %d\n", ((p + i)->number));
+		fprintf(fp, "ì´ë¦„: %s\n", ((p + i)->name));
+		fprintf(fp, "í•™ì : %.2lf\n", ((p + i)->grade));
 		fprintf(fp, "\n");
 	}
 
@@ -103,19 +103,19 @@ void sort_number(STUDENT* p, int size) {
 }
 
 void sort_name(STUDENT* p, int size) {
-	int min;
-	STUDENT temp;
-	for (int i = 0; i < size; i++) {
-		min = i;
-		for (int j = i + 1; j < size; j++) {
-			if (((p + min)->number) > (p + j)->number) {
-				min = j;
-			}
-		}
-		temp = *(p + i);
-		*(p + i) = *(p + min);
-		*(p + min) = temp;
-	}
+        int min;
+        STUDENT temp;
+        for (int i = 0; i < size; i++) {
+                min = i;
+                for (int j = i + 1; j < size; j++) {
+                        if (strcmp((p + min)->name, (p + j)->name) > 0) {
+                                min = j;
+                        }
+                }
+                temp = *(p + i);
+                *(p + i) = *(p + min);
+                *(p + min) = temp;
+        }
 }
 
 void sort_grade(STUDENT* p, int size) {
